@@ -1,0 +1,61 @@
+<header-page [title]="'Contact Us'" [backbutton]="'true'"></header-page>
+
+<ion-content class="ion-padding">
+  <form novalidate [formGroup]="contactUsForm" (ngSubmit)="sendMsg()">
+    <ion-item>
+      <ion-label position="floating">Name</ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
+
+    <ion-text color="danger" *ngIf="contactUsForm.get('name').invalid && contactUsForm.get('name').touched ">
+      {{ getErrorMessage(contactUsForm.get('name')) }}
+    </ion-text>
+
+
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+
+    <ion-text color="danger" *ngIf="contactUsForm.get('email').invalid && contactUsForm.get('email').touched">
+      {{ getErrorMessage(contactUsForm.get('email')) }}
+    </ion-text>
+
+
+    <ion-item>
+      <ion-label position="floating">Phone No</ion-label>
+      <ion-input type="tel" formControlName="phoneNo"></ion-input>
+    </ion-item>
+
+    <ion-text color="danger" *ngIf="contactUsForm.get('phoneNo').invalid && contactUsForm.get('phoneNo').touched">
+      {{ getErrorMessage(contactUsForm.get('phoneNo')) }}
+    </ion-text>
+
+
+    <ion-item>
+      <ion-label position="floating">Subject</ion-label>
+      <ion-select interface="action-sheet" formControlName="subject">
+        <ion-select-option *ngFor="let sub of subjectList" [value]="sub">
+          {{sub.Subject}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-text color="danger" *ngIf="contactUsForm.get('subject').invalid && contactUsForm.get('subject').touched">
+      {{ getErrorMessage(contactUsForm.get('subject')) }}
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Message</ion-label>
+      <ion-textarea type="tel" formControlName="message"></ion-textarea>
+    </ion-item>
+
+    <ion-text color="danger" *ngIf="contactUsForm.get('message').invalid && contactUsForm.get('message').touched">
+      {{ getErrorMessage(contactUsForm.get('message')) }}
+    </ion-text>
+
+
+    <ion-button type="submit" expand="block" [disabled]="contactUsForm.invalid">Send Message</ion-button>
+
+  </form>
+</ion-content>

@@ -1,0 +1,51 @@
+.footer_tab{
+  // box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.16);
+  ion-tab-button{    
+    background-color: #ffffff;
+  }
+  ion-tab-bar{
+    height: 45px;
+    border: none;
+    position: relative;
+    box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.16);
+  }
+  ion-label{
+    font-family: PTSans;
+    font-size: 10px;
+    font-weight: normal;
+    letter-spacing: 0.12px;
+    color: #ffffff;
+    text-transform: capitalize;
+    margin-top: 7px;
+  }
+}
+img{
+  height: 32px;
+}
+
+.tab-icon{
+	// color: #a8a8a8;
+  //   fill: #a8a8a8;
+  color: #444444;
+  fill: #444444;
+}
+.tab-selected .tab-icon{
+	color: #0b4e29;
+    fill: #0b4e29;
+}
+.tabIconName{
+  color: #a8a8a8;
+}
+.tab-selected .tabIconName{
+  color:#0b4e29
+}
+.fabBtn{
+  --background: #0b4e29;
+}
+.active{
+  --background: #00695a;
+}
+.middleIcon{
+  color: white;
+  fill: white;
+}

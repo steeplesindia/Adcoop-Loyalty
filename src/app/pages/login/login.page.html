@@ -1,0 +1,48 @@
+<ion-content class="background">
+  <div class="signup_box bg">
+    <div class="skip">
+      <p [routerLink]="'/tab/tabs/dashboard-guest'">Skip</p>
+    </div>
+    <div class="logo">
+      <img src="../../assets/images/logo.png">
+    </div>
+
+    <form id="loginForm" novalidate [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+      <div *ngIf="( loginForm.get('email').hasError('required') ) && loginForm.get('email').touched">
+        <ion-text *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">
+          Email-Id is required
+        </ion-text>
+      </div>
+
+      <div *ngIf="( loginForm.get('email').hasError('email') ) && loginForm.get('email').touched">
+        <ion-text *ngIf="loginForm.get('email').hasError('email') && loginForm.get('email').touched">
+          Email-Id is in invalid format, eg : abc@xyz.com
+        </ion-text>
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="{{showPass ? 'text' : 'password'}}" (keydown.enter)="loginSubmit()" formControlName="password">
+        </ion-input>
+        <ion-icon class="eyeIcon" item-end slot="end" class="eye" name="{{showPass ? 'eye' : 'eye-off'}}"
+          (click)="showPass=!showPass"></ion-icon>
+      </ion-item>
+
+      <div *ngIf="( loginForm.get('password').hasError('required') ) && loginForm.get('password').touched">
+        <ion-text *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched">
+          Password is required
+        </ion-text>
+      </div>
+
+
+      <ion-button type="submit" class="login" expand="block" [disabled]="loginForm.invalid || showSpinner">
+        Login
+        <ion-spinner name="dots" *ngIf="showSpinner"></ion-spinner>
+      </ion-button>
+    </form>
+  </div>
+</ion-content>

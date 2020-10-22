@@ -1,0 +1,70 @@
+<header-page [title]="'Store Locator'"></header-page>
+
+<ion-content>
+
+  <ion-segment [(ngModel)]="selectedTab" mode="md">
+    <ion-segment-button value="mapView">
+      <ion-label>Map View</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="listView">
+      <ion-label>List View</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+
+  <!--MAP VIEW-->
+  <div [style.display]="selectedTab == 'mapView' ? 'block' : 'none'">
+    <ion-searchbar type="text" showCancelButton="focus" [(ngModel)]="searchedCity" (ionChange)="getItems()"
+    autocomplete="off"
+      (ionClear)="onClear()" (ionCancel)="onCancel()" mode="ios" placeholder="Search City" (click)="searchBarCLicked()">
+    </ion-searchbar>
+    <div #map id="map" style='width:100%;height:75vh;;margin-top:0px' [hidden]="!showMap"></div>
+
+    <ion-list *ngIf="!showMap">
+      <ion-item *ngFor="let city of cityFilter" (click)="citySelected(city)">
+        <ion-label> {{city.cityName}} </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <!--LIST VIEW-->
+
+  <div [hidden]="selectedTab !='listView'">
+    <div *ngFor="let store of storeList">
+      <ion-card *ngIf="store.isVisible" class="storeCard">
+        <ion-row>
+          <ion-col size="2">
+            <img src="../../assets/images/store-loc.png">
+          </ion-col>
+          <ion-col size="10">
+            <p class="storeName">{{ store.StoreName }}</p>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="2">
+            <p *ngIf="store.distance">{{store.distance}}</p>
+          </ion-col>
+          <ion-col size="10">
+            {{store.Address}}
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="8">
+
+          </ion-col>
+          <ion-col size="4">
+            <p class="viewOnMapBtn" (click)="viewOnMap(store)">
+              <ion-icon slot="start" name="map" class="mapIcon"></ion-icon>
+              <span style="margin-left: 16px;font-size: 12px;" (click)="viewOnMap(store)">
+                Map
+              </span>
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </div>
+  </div>
+
+</ion-content>

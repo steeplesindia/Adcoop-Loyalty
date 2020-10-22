@@ -1,0 +1,13 @@
+<ion-header>
+  <div class="top_header">
+    <div class="left" (click)="goback(backbutton)" *ngIf="backbutton">
+      <img src="../../assets/images/nav_left2.png" alt="">
+    </div>
+    <div class="center">
+      <p (click)="goback(backbutton)">{{title}}</p>
+    </div>
+    <div class="right" (click)="goHome()">
+      <img src="../../assets/images/logo2.png" alt="">
+    </div>
+  </div>
+</ion-header>

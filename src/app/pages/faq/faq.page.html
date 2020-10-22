@@ -1,0 +1,15 @@
+<header-page [title]="'FAQ'" [backbutton]="'true'"></header-page>
+
+<ion-content>
+  <div *ngFor="let faq of faqList">
+    <ion-card>
+      <ion-card-header text-center  class="desc" style="font-size: 14px; font-weight: 500">
+        <ion-icon [name]="faq.icon" style="float: left; zoom: 1.7;" (click)="toggle(faq)"></ion-icon>{{faq.q}}
+      </ion-card-header>
+
+      <ion-card-content *ngIf="faq.visible">
+        <p class="desc" style="font-size: 14px;"  [innerHTML]="faq.ans"></p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

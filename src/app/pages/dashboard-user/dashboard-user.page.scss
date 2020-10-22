@@ -1,0 +1,519 @@
+.brightness {
+  filter: brightness(1.2);
+}
+.barcode {
+  text-align: center;
+}
+.couponTxt {
+  font-size: 14px;
+  color: #ffffff;
+  text-align: left;
+  float: left;
+  padding: 6px;
+  p {
+    margin: 0px !important;
+  }
+}
+.couponArrowIcon {
+  color: white;
+  float: right;
+  padding: 12%;
+}
+.transactionArrowIcon {
+  color: white;
+  padding: 12%;
+}
+
+.couponTxt {
+  font-size: 14px;
+  color: #ffffff;
+  text-align: left;
+  float: left;
+  padding: 6px;
+  p {
+    margin: 0px !important;
+  }
+}
+
+/*----- Card Box 1 -----*/
+.box1 {
+  //width: 90%;
+  width: 350px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.15);
+  //background-color: #00695a;
+  background-image: url("../../../assets/images/card_front.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  margin: 0 auto;
+  margin-bottom: 7%;
+  margin-top: 10px;
+  height: 200px;
+  .col_1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 5%;
+    .ryt {
+      padding-left: 50%;
+      img {
+        margin-right: 10px;
+        text-align: right;
+      }
+    }
+  }
+  .mid_col {
+    position: absolute;
+    right: 5%;
+    top: 8vmax;
+    height: 52px;
+    margin-top: 32px;
+    border-radius: 13px 0px 0px 13px;
+    float: right;
+    width: 35%;
+    background-color: #0b4e29;
+  }
+  .col_2 {
+    margin-top: 110px;
+    .left {
+      float: left;
+      width: 50%;
+      padding-left: 15px;
+      // padding-top: 10px;
+      p {
+        font-family: Roboto;
+        font-size: 1.2rem;
+        font-weight: 500;
+        letter-spacing: 4px;
+        text-align: left;
+        color: white;
+        line-height: 20px;
+        margin: 0px !important;
+      }
+    }
+    .ryt {
+      height: 52px;
+      object-fit: contain;
+      box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+      background-color: #157a3d;
+
+      border-radius: 13px 0px 0px 13px;
+      float: right;
+      width: 39%;
+      .text {
+        float: left;
+        width: 80%;
+        padding-top: 8px;
+        padding-left: 10px;
+        p {
+          font-family: Roboto;
+          font-size: 12px;
+          letter-spacing: 0.2px;
+          text-align: left;
+          color: white;
+          margin: 0;
+        }
+        div {
+          color: white;
+          font-size: 17px;
+          font-weight: normal;
+          margin: 0;
+        }
+      }
+      .img {
+        float: left;
+        text-align: right;
+        // padding-right: 5px;
+        padding-top: 20px;
+        width: 14px;
+        height: 20px;
+      }
+    }
+  }
+}
+
+/*----- Card Box 1 -----*/
+.box2 {
+  width: 90%;
+  height: 40%;
+  border-radius: 10px;
+  box-shadow: 0 1px 2px 0 rgba(255, 255, 255, 0);
+  background-color: #c6c6c6;
+  margin: 0 auto;
+  margin-bottom: 7%;
+  .col_1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 5%;
+    .left {
+      img {
+        width: 100px;
+        height: 41.6px;
+      }
+    }
+    .ryt {
+      padding-left: 50%;
+      img {
+        margin-right: 10px;
+        text-align: right;
+      }
+    }
+  }
+  .mid_col {
+    float: right;
+    width: 100px;
+    height: 35px;
+    border-radius: 7px 0px 0px 7px;
+    background-color: #0b4e29;
+    margin-top: 20px;
+    p {
+      margin: 0;
+      font-family: Roboto;
+      font-size: 12px;
+      font-weight: 500;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 2.08;
+      letter-spacing: 0.3px;
+      text-align: right;
+      color: #ffffff;
+      padding: 5px;
+      padding-right: 10px;
+    }
+  }
+}
+
+.card_txt {
+  padding-left: 5%;
+  p {
+    font-family: Roboto;
+    font-size: 12px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.25;
+    letter-spacing: 0.18px;
+    text-align: left;
+    color: #0b4e29;
+    margin: 0;
+  }
+  a {
+    width: 23%;
+    padding: 4%;
+    border: none;
+    cursor: pointer;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px 0 rgba(50, 50, 93, 0.11);
+    background-color: #0b4e29;
+    box-shadow: 0 4px 6px 0 rgba(50, 50, 93, 0.11);
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1;
+    letter-spacing: 0.23px;
+    text-align: center;
+    color: #ffffff;
+    text-transform: uppercase;
+    display: block;
+    // margin: 0 auto;
+    margin-bottom: 5%;
+    margin-top: 10%;
+  }
+}
+
+.bottom-left {
+  position: absolute;
+  bottom: 30px;
+  left: 35px;
+  font-size: 14px;
+}
+
+.text_box {
+  padding: 15px;
+  p {
+    font-family: Roboto;
+    font-size: 14px;
+    line-height: 1.43;
+    letter-spacing: 0.21px;
+    text-align: left;
+    color: #707070;
+    margin: 0;
+    span {
+      color: #0b4e29;
+    }
+  }
+}
+
+.bottom-left {
+  position: absolute;
+  bottom: 30px;
+  left: 35px;
+  font-size: 14px;
+}
+
+.text_box {
+  padding: 15px;
+  p {
+    font-family: Roboto;
+    font-size: 14px;
+    line-height: 1.43;
+    letter-spacing: 0.21px;
+    text-align: left;
+    color: #707070;
+    margin: 0;
+    span {
+      color: #0b4e29;
+    }
+  }
+}
+.points_box {
+  padding: 4%;
+  // padding-top: 10%;
+  padding-bottom: 0px;
+  color: #fff;
+  .progress-wrapper {
+    position: relative;
+    width: 67%;
+    margin: 0 auto;
+  }
+
+  p {
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1;
+    letter-spacing: 0.23px;
+    color: #272727;
+    margin: 0;
+    margin-top: 4px;
+    font-family: Roboto;
+  }
+  h4 {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1;
+    letter-spacing: 0.23px;
+    text-align: center;
+    color: #272727;
+  }
+}
+
+.couponTxt {
+  font-size: 14px;
+  color: #ffffff;
+  text-align: left;
+  float: left;
+  padding: 6px;
+  p {
+    margin: 0px !important;
+  }
+}
+
+.bg3 {
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+  background-color: #fff;
+  min-height: 150px;
+  border-bottom: 1px solid #70707040;
+  // border-top: 1px solid #70707040;
+  position: relative;
+  .add-your-naivas-card {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.67;
+    letter-spacing: 0.38px;
+    text-align: left;
+    color: #0b4e29;
+    position: absolute;
+    top: 33%;
+    width: 78%;
+    left: 15%;
+    display: flex;
+    align-items: center;
+    .add {
+      margin: 10px;
+      height: 40px;
+    }
+  }
+}
+
+.viewAllbtn {
+  float: right;
+  color: #0b4e29;
+  font-size: 22px;
+  padding-right: 16px;
+}
+
+.sliderImg {
+  border-radius: 15px;
+  padding: 5%;
+  padding-left: 10px;
+}
+/*----- Image Box1 -----*/
+.img_box1 {
+  position: relative;
+  .relate {
+    img {
+      width: 100% !important;
+      height: 180px !important;
+      object-fit: fill !important;
+    }
+  }
+  .absolute {
+    position: absolute;
+    z-index: 1;
+    bottom: 67px;
+    left: 105px;
+  }
+}
+
+/*----- Image box 2 -----*/
+.img_box2 {
+  padding-top: 10px;
+  position: relative;
+  .line {
+    border-bottom: 7px solid #0b4e29;
+  }
+  .sub_box1 {
+    img {
+      width: 100%;
+    }
+  }
+  .sub_box2 {
+    position: absolute;
+    width: 100%;
+    opacity: 0.5;
+    background-color: #272727;
+    bottom: 10%;
+    text-align: right;
+    p {
+      font-family: Roboto;
+      font-size: 17px;
+      font-weight: 500;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1;
+      letter-spacing: 0.23px;
+      text-align: right;
+      color: #fff;
+      padding-right: 20px;
+      text-transform: uppercase;
+    }
+  }
+}
+.text_box {
+  padding: 15px;
+  p {
+    font-family: Roboto;
+    font-size: 14px;
+    line-height: 1.43;
+    letter-spacing: 0.21px;
+    text-align: left;
+    color: #707070;
+    margin: 0;
+    span {
+      color: #0b4e29;
+    }
+  }
+}
+
+/*----- Button -----*/
+.btn_box {
+  text-align: center;
+  padding-top: 40px;
+  a {
+    width: 80%;
+    padding: 4%;
+    border: none;
+    cursor: pointer;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px 0 rgba(50, 50, 93, 0.11);
+    background-color: #0b4e29;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1;
+    letter-spacing: 0.23px;
+    text-align: center;
+    color: #ffffff;
+    text-transform: uppercase;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 4%;
+  }
+}
+.viewalltxt {
+  float: right;
+  font-size: 16px;
+  color: #00695a;
+  text-decoration: underline;
+}
+.weeklyImg {
+  max-height: 100px;
+  max-width: 100px;
+}
+.swiper-pagination {
+  --position: unset !important;
+}
+
+.swiper-container-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+  bottom: 90% !important;
+  left: 0;
+  width: 100%;
+}
+.line {
+  border-bottom: 7px solid #0b4e29;
+}
+.mediaSlides {
+  margin-top: 10px;
+  background: white;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+  .divHead {
+    padding-top: 4%;
+    padding-left: 4%;
+  }
+  .mediaCard {
+    box-shadow: none;
+  }
+}
+ion-col {
+  text-align: center;
+}
+.dashBtn {
+  height: 60px;
+  width: 60px;
+  border-radius: 500px;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 7px 15px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+}
+.btnTxt {
+  font-size: 14px;
+}
+.websiteBtn {
+  background: #0b4e29;
+}
+.offerBtn {
+  background: #00695a;
+}
+.socialMediaBtn {
+  background: #581845;
+}
+.corporateBtn {
+  background: #c70039;
+}

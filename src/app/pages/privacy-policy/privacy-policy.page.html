@@ -1,0 +1,8 @@
+<header-page [title]="'Privacy Policy'" [backbutton]="'true'"></header-page>
+
+<ion-content>
+  <!-- <h4 class="desc" text-center> {{headerTxt._privacy}} </h4> -->
+  <div *ngIf="policyLabel !=''">
+    <div class="desc" [innerHTML]="policyLabel"></div>
+  </div>
+</ion-content>

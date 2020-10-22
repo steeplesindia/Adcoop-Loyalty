@@ -1,0 +1,78 @@
+<header-page [title]="'Hi'" [backbutton]="false" ></header-page>
+
+<ion-content class="bg2">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-down-outline" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+
+  <div class="bg3">
+    <div class="box1" id="main">
+      <div class="col_1">
+      </div>
+
+      <div class="col_2">
+        <div class="left" (click)="gotoProfile()">
+          <p>{{customerDetails?.FirstName | uppercase }} {{customerDetails?.LastName | uppercase }}</p>
+          <!-- <p>{{cardNumberDisplay()}} </p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <ng-container *ngTemplateOutlet="carouselSlider"></ng-container>
+  <ng-container *ngTemplateOutlet="weeklyOffers"></ng-container> -->
+
+
+  <ng-template #weeklyOffers>
+    <div class="mediaSlides">
+      <div style="padding: 4%;font-size: 16px;">
+        <ion-row *ngIf="buttonList.length>0">
+          <ion-col>
+            <button class="dashBtn websiteBtn" (click)="navigate(buttonList[0])">
+              <i class="fa fa-desktop" aria-hidden="true"></i>
+            </button>
+            <p class="btnTxt"> {{buttonList[0].Text}} </p>
+          </ion-col>
+          <ion-col>
+            <button class="dashBtn offerBtn" (click)="navigate(buttonList[1])">
+              <i class="fa fa-percent" aria-hidden="true"></i>
+            </button>
+            <p class="btnTxt">{{buttonList[1].Text}}</p>
+          </ion-col>
+          <ion-col>
+            <button class="dashBtn socialMediaBtn" (click)="navigate(buttonList[2])">
+              <i class="fa fa-rss" aria-hidden="true"></i>
+
+            </button>
+            <p class="btnTxt">{{buttonList[2].Text}}</p>
+          </ion-col>
+
+          <ion-col>
+            <button class="dashBtn corporateBtn" (click)="navigate(buttonList[3])">
+              <i class="fa fa-building" aria-hidden="true"></i>
+            </button>
+            <p class="btnTxt">{{buttonList[3].Text}}</p>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+  </ng-template>
+
+
+  <ng-template #carouselSlider>
+    <div class="img_box1" style="margin-top: 5px;">
+      <div class="relate">
+        <ion-slides pager="true" [options]="headerSlider" *ngIf="carouselList" #slides>
+          <ion-slide *ngFor="let carousel of carouselList">
+            <img [src]="imgAddress + carousel.ImageLink" alt="" (click)="openCarouselPage(carousel.Url)">
+          </ion-slide>
+        </ion-slides>
+      </div>
+    </div>
+  </ng-template>
+
+</ion-content>

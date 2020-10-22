@@ -1,0 +1,104 @@
+<header-page [title]="'Home'"></header-page>
+
+<ion-content class="bg2">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-down-outline" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+  <ng-container *ngTemplateOutlet="carouselSlider"></ng-container>
+  <ng-container *ngTemplateOutlet="weeklyOffers"></ng-container>
+
+
+  <div class="img_box2">
+    <div class="sub_box1">
+      <img src="../../assets/images/Store.png" alt="">
+    </div>
+    <div class="sub_box2">
+      <p>About Hayyak</p>
+    </div>
+  </div>
+  <div class="text_box">
+    <p>Hayyak is Abu Dhabi Cooperative Society’s rewards program. Being a member of Hayyak My
+      Rewards Programme gives you the opportunity to avail great exclusive offers and various other benefits.
+      You can get your Hayyak loyalty card from any Abu Dhabi Cooperative Society SPAR, Megamart store across UAE.
+      All you need to do is register your Hayyak Card following a few easy steps.
+      <span *ngIf="truncating0" (click)="truncating0 = false">Read More…</span></p>
+  </div>
+
+
+  <div class="img_box2">
+    <div class="line"></div>
+    <div class="sub_box1">
+      <img src="../../assets/images/Benefits.png" alt="">
+    </div>
+    <div class="sub_box2">
+      <p>benefits</p>
+    </div>
+
+  </div>
+  <div class="text_box">
+    <p>Redeem AED 50 on the next billing right after earning 3000 points. Earn points on every purchase.
+      <span *ngIf="truncating1" (click)="truncating1 = false">Read More…</span></p>
+    <p *ngIf="!truncating1">
+      View your rewards anytime on the app or website.
+      Lowest spend threshold.
+      Hayyak rewards program offers the best rewards* in the region.
+      Hayyak members get exclusive promotions.
+      <span (click)="truncating1 = true">Show Less</span></p>
+  </div>
+  <!----- Button ----->
+  <ion-button expand="block" (click)="goLogin()" class="joinBtn">Join us today</ion-button>
+ 
+
+  <ng-template #weeklyOffers>
+    <div class="mediaSlides">
+      <div style="padding: 4%;font-size: 16px;">
+        <ion-row *ngIf="buttonList.length>0">
+          <ion-col>
+            <button class="dashBtn websiteBtn" (click)="navigate(buttonList[0])">
+              <i class="fa fa-desktop" aria-hidden="true"></i>
+            </button>
+            <p class="btnTxt"> {{buttonList[0].Text}} </p>
+          </ion-col>
+          <ion-col>
+            <button class="dashBtn offerBtn" (click)="navigate(buttonList[1])">
+              <i class="fa fa-percent" aria-hidden="true"></i>
+            </button>
+            <p class="btnTxt">{{buttonList[1].Text}}</p>
+          </ion-col>
+          <ion-col>
+            <button class="dashBtn socialMediaBtn" (click)="navigate(buttonList[2])">
+              <i class="fa fa-rss" aria-hidden="true"></i>
+
+            </button>
+            <p class="btnTxt">{{buttonList[2].Text}}</p>
+          </ion-col>
+
+          <ion-col>
+            <button class="dashBtn corporateBtn" (click)="navigate(buttonList[3])">
+              <i class="fa fa-building" aria-hidden="true"></i>
+            </button>
+            <p class="btnTxt">{{buttonList[3].Text}}</p>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+  </ng-template>
+
+
+  <ng-template #carouselSlider>
+    <div class="img_box1" style="margin-top: 5px;">
+      <div class="relate">
+        <ion-slides pager="true" [options]="headerSlider" *ngIf="carouselList" #slides>
+          <ion-slide *ngFor="let carousel of carouselList">
+            <img [src]="imgAddress + carousel.ImageLink" alt="" (click)="openCarouselPage(carousel.Url)">
+          </ion-slide>
+        </ion-slides>
+      </div>
+    </div>
+  </ng-template>
+
+</ion-content>
