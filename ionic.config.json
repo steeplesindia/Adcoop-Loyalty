@@ -1,5 +1,7 @@
 {
   "name": "Adcoop-Loyalty-app",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

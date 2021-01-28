@@ -4,7 +4,7 @@
   <div *ngFor="let faq of faqList">
     <ion-card>
       <ion-card-header text-center  class="desc" style="font-size: 14px; font-weight: 500">
-        <ion-icon [name]="faq.icon" style="float: left; zoom: 1.7;" (click)="toggle(faq)"></ion-icon>{{faq.q}}
+        <ion-icon [name]="faq.icon" style="float: left; zoom: 1.7;margin-right: 5px;" (click)="toggle(faq)"></ion-icon>{{faq.q}}
       </ion-card-header>
 
       <ion-card-content *ngIf="faq.visible">

@@ -1,0 +1,16 @@
+<!-- <header-page [title]="'My Cards'"></header-page> -->
+<div style="background: #f3f3f3;">
+  <div class="header">
+    <p class="title">My Cards</p>
+  </div>
+  <div style="margin-top: 55px;">
+    <ion-slides [options]="FeaturedSliderConfig" pager="true" #slides>
+      <ion-slide *ngFor="let custCard of customerCardList;let i=index">
+        <card-details [customerCard]="custCard" [index]="i"></card-details>
+        <div>
+          <p>Recent Transactions</p>
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </div>
+</div>

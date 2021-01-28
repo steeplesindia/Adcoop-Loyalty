@@ -9,6 +9,7 @@ import { AlertService } from '../services/alert.service';
 import { Location } from '@angular/common';
 import { AuthGuardService } from '../services/auth-guard.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
 export class Base {
 
   private _apiService: ApiService
@@ -18,13 +19,18 @@ export class Base {
   private location: Location;
   private _authService: AuthGuardService;
   private _sanitizer: DomSanitizer;
+  private loadingController: LoadingController;
+  private loading;
+  protected translate: TranslateService;
 
   private toastCtrl: ToastController;
   public menuCtrl: MenuController;
   public popoverCtrl: ModalController;
+  public colorList: any[];
 
 
   constructor(injector: Injector) {
+    this.translate = injector.get(TranslateService);
     this._apiService = injector.get(ApiService);
     this._storage = injector.get(StorageService);
     this._router = injector.get(Router);
@@ -35,8 +41,14 @@ export class Base {
     this.location = injector.get(Location);
     this._authService = injector.get(AuthGuardService);
     this._sanitizer = injector.get(DomSanitizer);
+    this.loadingController = injector.get(LoadingController);
+    this.colorList = [];
+    this.colorList.push("linear-gradient(90deg, #f12525, #347fdc)");
+    this.colorList.push("linear-gradient(90deg,#03f723,#0051e6)");
   }
-
+  getTrans(key: string | string[]) {
+    return this.translate.get(key).toPromise();
+  }
   get alertCtrl() { return this._alertService; }
   get apiService() { return this._apiService; }
   get storageService() { return this._storage }
@@ -51,22 +63,23 @@ export class Base {
     return this._alertService.presentToast(message);
   }
 
-  enableSideMenu(value) {
-    this.menuCtrl.enable(value);
-  }
-  openSideMenu() {
-    this.menuCtrl.open();
-  }
-  closeSideMenu() {
-    this.menuCtrl.close();
-  }
+  enableSideMenu = (value) => this.menuCtrl.enable(value)
+
+  openSideMenu = () => this.menuCtrl.open()
+
+  closeSideMenu = () => this.menuCtrl.close()
 
   logout() {
-    this.alertCtrl.AlertConfirmation("Logout", "Are you sure you want to logout?").subscribe(res => {
-      if (res) {
-        this._authService.setAuthenticated(false);
-        this.navigate("login");
-      }
+    this.getTrans("logoutHeader").then(header => {
+      this.getTrans("logoutMsg").then(msg => {
+        this.alertCtrl.AlertConfirmation(header, msg).subscribe(res => {
+          if (res) {
+            this._authService.setAuthenticated(false);
+            this.storageService.clearStorage();
+            this.navigate("login");
+          }
+        })
+      })
     })
   }
 
@@ -79,6 +92,54 @@ export class Base {
 
   public goLogin = () => this.navigate("login");
 
-  public sanitizeUrl = (url) => this._sanitizer.bypassSecurityTrustResourceUrl(url)
+  public sanitizeUrl = (url) => this._sanitizer.bypassSecurityTrustResourceUrl(url);
 
+  public cardType(type) {
+    if (type == 1) {
+      return "Primary Card";
+    } else {
+      return "Secondary Card";
+    }
+  }
+
+  cardNumberDisplay(data) {
+    if (data)
+      return data.toString().replace(/\s+/g, '').replace(/(\d{4})/g, '$1 ').trim();
+  }
+
+  async openModal(componentName, title, data?, type?, extraData?) {
+    return new Promise(async (resolve, reject) => {
+      const modal = await this.popoverCtrl.create({
+        component: componentName,
+        componentProps: {
+          "title": title,
+          "value": data,
+          "type": type,
+          "extraData": extraData
+        }
+      });
+      modal.onDidDismiss().then((res) => {
+        if (res.data && res.data != {}) {
+          resolve(res.data);
+        }
+      })
+      await modal.present();
+    })
+  }
+
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      message: 'Please wait...',
+    });
+    await this.loading.present();
+  }
+
+  dismissLoading = () => this.loading.dismiss();
+
+  getErrorMessage(form) {
+    if (form.hasError('required'))
+      return 'This field is required';
+    else if (form.hasError('email'))
+      return 'Invalid Email format';
+  }
 }

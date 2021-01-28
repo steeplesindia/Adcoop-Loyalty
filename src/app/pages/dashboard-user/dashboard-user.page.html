@@ -1,32 +1,7 @@
-<header-page [title]="'Hi'" [backbutton]="false" ></header-page>
+<header-page [title]="'hi'" [backbutton]="false" ></header-page>
 
 <ion-content class="bg2">
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingIcon="arrow-down-outline" pullingText="Pull to refresh" refreshingSpinner="circles"
-      refreshingText="Refreshing...">
-    </ion-refresher-content>
-  </ion-refresher>
-
-
-
-  <div class="bg3">
-    <div class="box1" id="main">
-      <div class="col_1">
-      </div>
-
-      <div class="col_2">
-        <div class="left" (click)="gotoProfile()">
-          <p>{{customerDetails?.FirstName | uppercase }} {{customerDetails?.LastName | uppercase }}</p>
-          <!-- <p>{{cardNumberDisplay()}} </p> -->
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- <ng-container *ngTemplateOutlet="carouselSlider"></ng-container>
-  <ng-container *ngTemplateOutlet="weeklyOffers"></ng-container> -->
-
-
+ 
   <ng-template #weeklyOffers>
     <div class="mediaSlides">
       <div style="padding: 4%;font-size: 16px;">

@@ -1,0 +1,99 @@
+
+.headerSection {
+  position: fixed;
+  z-index: 99;
+  height: 180px;
+  width: 100%;
+  background: linear-gradient(90deg, #149bb7, #44ebe3);
+  border-bottom-right-radius: 26px;
+  border-bottom-left-radius: 26px;
+  .title {
+    font-size: 22px;
+    color: white;
+    margin: 0;
+    padding: 16px;
+    padding-bottom: 0;
+  }
+}
+.box {
+  height: 50px;
+  width: 100px;
+  max-width: 150px;
+  background: white;
+  margin: 0 20px;
+  flex: 1;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+  }
+  p:last-child {
+    font-size: 12px;
+  }
+}
+.pointsSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.barcodeSection {
+  background: white;
+  margin: 16px;
+  padding: 16px 16px 3px 16px;
+  border-radius: 10px;
+  p {
+    font-family: monospace;
+  }
+}
+#barcode {
+  width: 100%;
+  height: 60px;
+  max-width: 330px;
+}
+.filter-icon {
+  height: 30px;
+  width: 30px;
+  float: right;
+  .filter-badge{
+    position: absolute;
+    border-radius: 50%;
+    font-size: 10px;
+    padding: 5px;
+    width: 20px;
+    height: 20px;
+    margin-left: -10px;
+  }
+}
+
+.customer-name {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-size: 22px;
+}
+ion-item{
+  margin: 0px 5px;
+  box-shadow: 0 4px 6px 0 rgba(50, 50, 93, 0.11);
+  border-radius: 10px;
+}
+ion-avatar{
+  text-align: center;
+  p{
+    font-size: 12px;
+  }
+}
+ion-card{
+  background: linear-gradient(90deg,#18f297,#00e6e6);
+}
+.noItem{
+  height: 200px;
+  width: 200px;
+  margin-top: 20px;
+}

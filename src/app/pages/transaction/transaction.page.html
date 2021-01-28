@@ -1,0 +1,52 @@
+<div class="headerSection" id="navbar">
+	<div class="title">
+		Transactions
+		<div class="filter-icon" (click)="filter()">
+			<ion-icon name="options-outline"></ion-icon>
+			<ion-badge color="danger" class="filter-badge" *ngIf="filterModel.startDate && filterModel.endDate">
+				1
+			</ion-badge>
+		</div>
+	</div>
+	<ion-searchbar mode="ios" [(ngModel)]="searchTxt"></ion-searchbar>
+	<div class="pointsSection">
+		<div class="box pointsBox">
+			<p>{{customerCard?.NewBalance}}</p>
+			<p> {{'points' | translate}}</p>
+		</div>
+		<div class="box valueBox">
+			<p> {{customerCard?.AvailableAmount}} </p>
+			<p>{{'aed' | translate}}</p>
+		</div>
+		<div class="box valueBox">
+			<p> {{customerCard?.RemainingPoints}} </p>
+			<p> {{'remaining' | translate}}</p>
+		</div>
+	</div>
+</div>
+<ion-content>
+
+	<!-- *ngIf="totalTrans > 0 && !noTrans;else noTransactions" -->
+	<div style="margin-top: 180px;text-align: center;">
+		<div *ngIf="transactionList.length;else noItem">
+			<ion-card *ngFor="let transDetails of transactionList  | filter:searchTxt">
+				<ion-item lines="none" (click)="viewReceipt(transDetails)">
+					<ion-avatar slot="start">
+						{{transDetails.pointsEarned | number:'1.0-0'}}
+						<p>pts</p>
+					</ion-avatar>
+					<ion-label>
+						<h3>Date : {{transDetails.transDate | date:'dd MMM, yyyy'}}</h3>
+						<p>Store : {{transDetails.storeName}}</p>
+						<p>Amount : {{transDetails.totalAmount * -1 }} {{transDetails.currency}} </p>
+						<p>Transaction Id: {{transDetails.transactionId}}</p>
+					</ion-label>
+				</ion-item>
+			</ion-card>
+		</div>
+		<ng-template #noItem>
+			<img src="../../../assets/images/no-item.png" class="noItem">
+			<p> {{ 'noItem' | translate }} </p>
+		</ng-template>
+	</div>
+</ion-content>

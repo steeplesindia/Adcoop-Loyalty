@@ -1,0 +1,100 @@
+<header-page [title]="'My Profile'" [backbutton]="'true'"></header-page>
+<ion-content class="ion-padding">
+	<ion-list>
+		<ion-item>
+			<ion-label position="stacked"> {{'cardNumber' | translate}} </ion-label>
+			<ion-input type="input" [disabled]="true" [value]="userInfo.CardNumber"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label position="stacked">  {{'firstName' | translate}} </ion-label>
+			<ion-input type="input" [disabled]="true" [value]="userInfo.FirstName"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label position="stacked"> {{'lastName' | translate}}</ion-label>
+			<ion-input type="input" [disabled]="true" [value]="userInfo.LastName"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label position="stacked"> {{'gender' | translate}} </ion-label>
+			<ion-select [(ngModel)]="userInfo.Gender" interface="action-sheet">
+				<ion-select-option *ngFor="let g of gender" [value]="g.id">
+					{{g.value}}
+				</ion-select-option>
+
+			</ion-select>
+		</ion-item>
+
+		<ion-item>
+			<ion-label position="stacked">{{'nationality' | translate}}</ion-label>
+			<ion-select [(ngModel)]="userInfo.Nationality" interface="action-sheet">
+				<ion-select-option *ngFor="let country of nationality" [value]="country.Id">
+					{{country.NationalityName}}
+				</ion-select-option>
+			</ion-select>
+		</ion-item>
+
+		<ion-item>
+			<ion-label position="stacked"> {{'dob' | translate}}</ion-label>
+			<ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="userInfo.DateOfBirth"></ion-datetime>
+		</ion-item>
+
+		<ion-item>
+			<ion-label position="stacked">{{'mobilePrefix' | translate}}</ion-label>
+			<ion-select [(ngModel)]="userInfo.prefix" interface="action-sheet">
+				<ion-select-option *ngFor="let pre of prefixList" [value]="pre.PrefixCode">
+					{{pre.PrefixCode}}
+				</ion-select-option>
+			</ion-select>
+		</ion-item>
+
+		<ion-item>
+			<ion-label position="stacked">{{'mobileNo' | translate}} </ion-label>
+			<ion-input type="input" [(ngModel)]="userInfo.MobileNo"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label position="stacked"> {{'email' | translate}} </ion-label>
+			<ion-input type="input" [disabled]="true" [value]="userInfo.Email"></ion-input>
+		</ion-item>
+
+
+		<ion-item>
+			<ion-label> {{'uaeResident' | translate}} </ion-label>
+			<ion-toggle ion-toggle-text="UAE Resident;Tourist" [(ngModel)]="userInfo.Country">
+			</ion-toggle>
+		</ion-item>
+
+
+		<ion-item>
+			<ion-label position="stacked"> {{'pwd' | translate}} </ion-label>
+			<ion-input type="Password" [(ngModel)]="userInfo.Password"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label position="stacked"> {{'city' | translate}} </ion-label>
+			<ion-input type="text" [(ngModel)]="userInfo.City"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label position="stacked">{{'area' | translate}} </ion-label>
+			<ion-input type="text" [(ngModel)]="userInfo.Area"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label position="stacked"> {{'streetNo' | translate}} </ion-label>
+			<ion-input type="text" [(ngModel)]="userInfo.Street"></ion-input>
+		</ion-item>
+
+		<ion-item>
+			<ion-label position="stacked">  {{'houseNo' | translate}} </ion-label>
+			<ion-input type="text" [(ngModel)]="userInfo.HouseNo"></ion-input>
+		</ion-item>
+
+		<ion-button outline expand="block" class="button1" (click)="confirmAlert()" style="height:40px">
+			{{'update' | translate}}
+		</ion-button>
+	</ion-list>
+
+</ion-content>

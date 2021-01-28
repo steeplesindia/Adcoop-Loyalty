@@ -1,78 +1,95 @@
-<header-page [title]="'My Account'"></header-page>
-<ion-content>
-  <div *ngIf="authenticated">
-    <div class="profile">
-      <div class="left">
-        <div *ngIf="userImg;else noImg" class="imgDiv">
-          <img src="{{userImg}}" alt="" class="userImg" srcset="">
+<header-page [title]="'My Account'" *ngIf="!authenticated"></header-page>
 
-        </div>
-        <ng-template #noImg>
-          <ion-icon name="person-circle" class="userImg"></ion-icon>
-        </ng-template>
+<ion-content>
+  <div class="headerSection" *ngIf="authenticated">
+    <p class="title"> {{ customerCard.FirstName | uppercase}}
+      {{customerCard.LastName | uppercase }} </p>
+    <div class="pointsSection">
+      <div class="box pointsBox">
+        <p>{{customerCard.NewBalance}}</p>
+        <p> {{'points' | translate}} </p>
+      </div>
+      <div class="box valueBox">
+        <p> {{customerCard.AvailableAmount}} </p>
+        <p>{{'aed' | translate}} </p>
+      </div>
+      <div class="box valueBox">
+        <p> {{customerCard.RemainingPoints}} </p>
+        <p> {{'remaining' | translate}} </p>
       </div>
     </div>
-    <div class="userDetailsTxt">
-      <p> {{customerDetails?.FirstName | titlecase}} {{ customerDetails?.LastName | titlecase}} </p>
-      <p> {{cardDetails?.LoyaltyCardNumber}} </p>
+    <div class="ion-text-center logout-section">
+      <ion-icon name="power-outline" class="logout-icon" (click)="logout()"></ion-icon>
     </div>
   </div>
   <div class="ion-text-center" style="margin-bottom: 16px;" *ngIf="!authenticated">
     <ion-card class="headerCard">
       <ion-card-content>
-        <p class="headerTxt">Welcome To Hayyak Loyalty</p>
-        <p>Start earning and spending points</p>
-        <ion-button expand="block" class="joinBtn" (click)="goLogin()">Let's get started</ion-button>
+        <p class="headerTxt"> {{'welcomeMessage' | translate}} </p>
+        <p> {{'earningMessage' | translate}} </p>
+        <ion-button expand="block" class="joinBtn" (click)="goLogin()">
+          {{ 'getStartedMessage' | translate}}
+        </ion-button>
       </ion-card-content>
     </ion-card>
   </div>
-
-  <div class="userDetailBox" *ngIf="authenticated">
-    <p class="itemHeaderTxt padding" style="color: #656565;">Account Details</p>
-    <ion-item detail="true" (click)="navigatePage('tab/tabs/profile')">
-      <ion-label>Profile</ion-label>
+  <div *ngIf="authenticated" style="margin-top: 200px;">
+    <p class="itemHeaderTxt padding" style="color: #656565;"> {{'accountDetailsLabel' | translate }} </p>
+    <ion-item lines="none" detail="true" (click)="navigatePage('tab/tabs/profile')">
+      <ion-label> {{'myProfile' | translate}} </ion-label>
     </ion-item>
 
-    <ion-item detail="true" (click)="navigatePage('tab/tabs/transaction')">
-      <ion-label>Transactions</ion-label>
+    <ion-item lines="none" detail="true" (click)="navigatePage('tab/tabs/promotion')">
+      <ion-label> {{'promotions' | translate}} </ion-label>
     </ion-item>
 
-    <ion-item detail="true" (click)="navigatePage('tab/tabs/interest')">
-      <ion-label>Your Interest</ion-label>
+    <ion-item lines="none" detail="true" (click)="navigatePage('tab/tabs/interest')">
+      <ion-label> {{'interest' | translate}} </ion-label>
     </ion-item>
 
-    <ion-item detail="true" (click)="navigatePage('tab/tabs/replace-card')">
-      <ion-label>Replace Card</ion-label>
+    <ion-item lines="none" detail="true" (click)="navigatePage('tab/tabs/replace-card')">
+      <ion-label> {{'replacecard' | translate}} </ion-label>
     </ion-item>
 
-    <ion-item detail="true" lines="none" (click)="logout()">
-      <ion-label>Sign Out</ion-label>
-    </ion-item>
-
-    <p class="itemHeaderTxt ion-padding" style="margin: 0px;color: #656565;">Communication</p>
-    <!-- <ion-item lines="none" detail="true" [routerLink]="['/tabs/my-account/notifications']">
-      <ion-label>Notification Messages</ion-label>
-    </ion-item> -->
-    <ion-item detail="true" lines="none" (click)="navigatePage('tab/tabs/contact')">
-      <ion-label>Contact Us</ion-label>
+    <ion-item lines="none" detail="true" (click)="logout()">
+      <ion-label> {{'logout' | translate}} </ion-label>
     </ion-item>
   </div>
-  <p class="itemHeaderTxt padding" style="margin-top: 0px;color: #656565;">Help</p>
-
-
-  <ion-item detail="true" (click)="navigatePage('tab/tabs/about')">
-    <ion-label>About Us</ion-label>
+  <p class="itemHeaderTxt ion-padding" style="margin: 0px;color: #656565;">
+    {{ 'communication' | translate }}
+  </p>
+  <!-- <ion-item lines="none" detail="true" [routerLink]="['/tabs/my-account/notifications']">
+    <ion-label>Notification Messages</ion-label>
+  </ion-item> -->
+  <ion-item lines="none" detail="true" (click)="navigatePage('tab/tabs/contact')">
+    <ion-label> {{ 'contact' | translate }} </ion-label>
   </ion-item>
 
-  <ion-item detail="true" (click)="navigatePage('tab/tabs/faq')">
-    <ion-label>FAQ</ion-label>
+  <ion-item lines="none">
+    <ion-label> {{ 'language' | translate }} </ion-label>
+    <ion-select interface="action-sheet" [(ngModel)]="language" (ionChange)="languageChange($event)">
+      <ion-select-option value="en"> {{'english' | translate}} </ion-select-option>
+      <ion-select-option value="ar"> {{'arabic' | translate}} </ion-select-option>
+    </ion-select>
   </ion-item>
 
-  <ion-item detail="true" (click)="navigatePage('tab/tabs/terms')">
-    <ion-label>Terms and Conditions</ion-label>
+  <p class="itemHeaderTxt padding" style="margin-top: 0px;color: #656565;">
+    {{ 'help' | translate }}
+  </p>
+
+  <ion-item lines="none" detail="true" (click)="navigatePage('tab/tabs/about')">
+    <ion-label> {{'about' | translate}}</ion-label>
   </ion-item>
 
-  <ion-item detail="true" lines="none" (click)="navigatePage('tab/tabs/privacy')">
-    <ion-label>Privacy Policy</ion-label>
+  <ion-item lines="none" detail="true" (click)="navigatePage('tab/tabs/faq')">
+    <ion-label> {{'faq' | translate}} </ion-label>
+  </ion-item>
+
+  <ion-item lines="none" detail="true" (click)="navigatePage('tab/tabs/terms')">
+    <ion-label> {{'terms' | translate}} </ion-label>
+  </ion-item>
+
+  <ion-item lines="none" detail="true" (click)="navigatePage('tab/tabs/privacy')">
+    <ion-label>{{'privacy' | translate}} </ion-label>
   </ion-item>
 </ion-content>

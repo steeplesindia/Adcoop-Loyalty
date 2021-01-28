@@ -1,41 +1,53 @@
 <div class="footer_tab">
   <ion-tabs>
     <ion-tab-bar>
-      <ion-tab-button tab="dashboard-guest" *ngIf="!authenticated">
-        <ion-icon name="home" class="tab-icon about"></ion-icon>
-        <span class="tabIconName">Home</span>
-      </ion-tab-button>
+      <ng-container *ngIf="!authenticated;else authenticateBlock">
 
-      <ion-tab-button tab="dashboard-user" *ngIf="authenticated">
-        <ion-icon name="home" class="tab-icon about"></ion-icon>
-        <span class="tabIconName">Home</span>
-      </ion-tab-button>
+        <ion-tab-button tab="dashboard-guest">
+          <ion-icon name="home" class="tab-icon about"></ion-icon>
+          <span class="tabIconName"> {{'home' | translate}} </span>
+        </ion-tab-button>
 
-      <ion-tab-button tab="promotion">
-        <ion-icon name="cart" class="tab-icon about"></ion-icon>
-        <span class="tabIconName">Promotion</span>
-      </ion-tab-button>
+        <ion-tab-button tab="promotion">
+          <ion-icon name="cart" class="tab-icon about"></ion-icon>
+          <span class="tabIconName">  {{'promotions' | translate}} </span>
+        </ion-tab-button>
 
-      <ion-tab-button tab="my-cards" *ngIf="authenticated">
-        <!-- <ion-icon name="card" class="tab-icon about"></ion-icon>
-        <span class="tabIconName">Cards</span> -->
-      </ion-tab-button>
+      </ng-container>
+
+      <ng-template #authenticateBlock>
+        <!-- <ion-tab-button tab="dashboard-user">
+          <ion-icon name="home" class="tab-icon about"></ion-icon>
+          <span class="tabIconName">  {{'home' | translate}} </span>
+        </ion-tab-button> -->
+
+        <ion-tab-button tab="my-cards">
+          <ion-icon name="home" class="tab-icon about"></ion-icon>
+          <span class="tabIconName">  {{'home' | translate}} </span>
+        </ion-tab-button>
+
+        <ion-tab-button tab="transaction">
+          <ion-icon name="cart" class="tab-icon about"></ion-icon>
+          <span class="tabIconName">  {{'transaction' | translate}}</span>
+        </ion-tab-button>
+
+      </ng-template>
 
       <ion-tab-button tab="store">
-        <ion-icon name="pin" class="tab-icon about"></ion-icon>
-        <span class="tabIconName">Store</span>
+        <ion-icon name="location-sharp" class="tab-icon about"></ion-icon>
+        <span class="tabIconName">  {{'store' | translate}} </span>
       </ion-tab-button>
 
       <ion-tab-button (click)="myAccount()" tab="my-account">
         <ion-icon name="menu" class="tab-icon about"></ion-icon>
-        <span class="tabIconName">More</span>
+        <span class="tabIconName">   {{'more' | translate}} </span>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
-  <ion-fab vertical="bottom" style="bottom: 0px;left:51%" *ngIf="authenticated" edge horizontal="center" slot="fixed"
+  <!-- <ion-fab vertical="bottom" style="bottom: 0px;left:51%" *ngIf="authenticated" edge horizontal="center" slot="fixed"
     tab="my-cards">
     <ion-fab-button (click)="gotoCard()" class="fabBtn">
       <ion-icon name="card" class="middleIcon"></ion-icon>
     </ion-fab-button>
-  </ion-fab>
+  </ion-fab> -->
 </div>

@@ -1,0 +1,39 @@
+<div class="container">
+  <div style="margin-bottom: 14px">
+    <div class="credit-card selected" [style.background]="colorList[i]">
+      <div class="card-company"> {{cardType(customerCard.Card_Type)}} </div>
+      <div class="card-number">
+        <div class="digit-group">{{cardNumberDisplay(customerCard.CardNumber)}}</div>
+      </div>
+      <div style="display:flex;flex: 1;justify-content: space-between;">
+        <div>
+          <div class="card-expire">
+            {{customerCard.ExpiryDate | date:'mediumDate'}}
+          </div>
+          <div class="card-holder">
+            {{ customerCard.FirstName | uppercase}}
+            {{customerCard.LastName | uppercase }}
+          </div>
+        </div>
+        <div class="bottom-logo">
+          <img src="../../../assets/images/logo2.png">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="barcodeSection">
+  <img id="barcode" />
+  <p>{{cardNumberDisplay(customerCard.CardNumber)}}</p>
+</div>
+<div class="pointsSection">
+  <div class="box pointsBox">
+    <p>{{customerCard.NewBalance}}</p>
+    <p style="font-size: 14px;"> {{customerCard.AvailableAmount}} {{'aed' | translate}} </p>
+    <p>{{'points' | translate}}</p>
+  </div>
+  <div class="box valueBox">
+    <p> {{customerCard.RemainingPoints}} </p>
+    <p> {{'remaining' | translate}} {{'points' | translate}} </p>
+  </div>
+</div>

@@ -1,5 +1,7 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { Base } from 'src/app/utils/base.class';
+import { AppConstantData } from 'src/app/utils/constant';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-faq',
@@ -23,10 +25,6 @@ export class FaqPage extends Base implements OnInit {
     }
   }
   ngOnInit() {
-    this.setFaqList();
-  }
-
-  setFaqList() {
-    // this.faqList = this.parameterservice.faqDictionary[lang];
+    this.faqList = AppConstantData.faqContext[this.apiService.language];   
   }
 }

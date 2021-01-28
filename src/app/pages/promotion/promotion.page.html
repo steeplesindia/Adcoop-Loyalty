@@ -1,13 +1,16 @@
-<header-page [title]="'Promotions'"></header-page>
+<header-page [title]="'Promotions'" *ngIf="!authenticated" ></header-page>
+<header-page [title]="'Promotions'" [backbutton]="'true'" *ngIf="authenticated" ></header-page>
 
 <ion-content>
-    <ion-item>
-        <ion-label text-left>Select Brand</ion-label>
-        <ion-select interface="action-sheet" [(ngModel)]="selectedPromotion">
-          <ion-select-option class="desc" *ngFor="let promo of selectedPromotion" [value]="promo"> {{promo.BrochureName }}
-          </ion-select-option>
-        </ion-select>
-      </ion-item>
-    
-      <iframe style="width: 100%;height:70vh" [src]="sanitizeUrl(selectedPromotion.BrochureURL)"></iframe>
+  <div class="ion-padding">
+    <ion-item >
+      <ion-label position="stacked"> {{'brand' | translate}} </ion-label>
+      <ion-select interface="action-sheet" [(ngModel)]="selectedPromotion">
+        <ion-select-option class="desc" *ngFor="let promo of promotionList" [value]="promo"> {{promo.BrochureName }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+  <iframe *ngIf="selectedPromotion?.BrochureURL" style="width: 100%;height:70vh"
+    [src]="sanitizeUrl(selectedPromotion.BrochureURL)"></iframe>
 </ion-content>

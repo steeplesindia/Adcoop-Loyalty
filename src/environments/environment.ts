@@ -1,20 +1,210 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
-
 export const environment = {
   production: false,
-  // baseUrl:"http://107.180.69.185:7044/",
-  // imgUrl:"http://107.180.69.185/"
-  baseUrl:"http://192.168.0.118:8043/api/app/",
-  imgUrl:"http://192.168.0.118/"
+  baseUrl:"http://86.98.89.163:1023/",
+  imgUrl:"http://86.98.89.163",
+  mapSetting:[
+    // {
+    //   "featureType": "water",
+    //   "elementType": "geometry",
+    //   "stylers": [
+    //     {
+    //       "color": "#e9e9e9"
+    //     },
+    //     {
+    //       "lightness": 17
+    //     }
+    //   ]
+    // },
+    // {
+    //   "featureType": "landscape",
+    //   "elementType": "geometry",
+    //   "stylers": [
+    //     {
+    //       "color": "#f5f5f5"
+    //     },
+    //     {
+    //       "lightness": 20
+    //     }
+    //   ]
+    // },
+    // {
+    //   "featureType": "road.highway",
+    //   "elementType": "geometry.fill",
+    //   "stylers": [
+    //     {
+    //       "color": "#ffffff"
+    //     },
+    //     {
+    //       "lightness": 17
+    //     }
+    //   ]
+    // },
+    // {
+    //   "featureType": "road.highway",
+    //   "elementType": "geometry.stroke",
+    //   "stylers": [
+    //     {
+    //       "color": "#ffffff"
+    //     },
+    //     {
+    //       "lightness": 29
+    //     },
+    //     {
+    //       "weight": 0.2
+    //     }
+    //   ]
+    // },
+    // {
+    //   "featureType": "road.arterial",
+    //   "elementType": "geometry",
+    //   "stylers": [
+    //     {
+    //       "color": "#ffffff"
+    //     },
+    //     {
+    //       "lightness": 18
+    //     }
+    //   ]
+    // },
+    {
+      "featureType": "road.local",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#ffffff"
+        },
+        {
+          "lightness": 16
+        }
+      ]
+    },
+    {
+      "featureType": "poi",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#f5f5f5"
+        },
+        {
+          "lightness": 21
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#dedede"
+        },
+        {
+          "lightness": 21
+        }
+      ]
+    },
+    {
+      "elementType": "labels.text.stroke",
+      "stylers": [
+        {
+          "visibility": "on"
+        },
+        {
+          "color": "#ffffff"
+        },
+        {
+          "lightness": 16
+        }
+      ]
+    },
+    {
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "saturation": 36
+        },
+        {
+          "color": "#333333"
+        },
+        {
+          "lightness": 40
+        }
+      ]
+    },
+    {
+      "elementType": "labels.icon",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "transit",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#f2f2f2"
+        },
+        {
+          "lightness": 19
+        }
+      ]
+    },
+    {
+      "featureType": "administrative",
+      "elementType": "geometry.fill",
+      "stylers": [
+        {
+          "color": "#fefefe"
+        },
+        {
+          "lightness": 20
+        }
+      ]
+    },
+    {
+      "featureType": "administrative",
+      "elementType": "geometry.stroke",
+      "stylers": [
+        {
+          "color": "#fefefe"
+        },
+        {
+          "lightness": 17
+        },
+        {
+          "weight": 1.2
+        }
+      ]
+    },
+    {
+      "featureType": "administrative.country",
+      "elementType": "labels",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative.province",
+      "elementType": "labels",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative.locality",
+      "elementType": "labels",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    }
+  ],
+  // baseUrl:"http://192.168.0.118:8043/",
+  // imgUrl:"http://192.168.0.118/"
 };
-
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.

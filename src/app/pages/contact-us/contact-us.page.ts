@@ -30,7 +30,7 @@ export class ContactUsPage extends Base implements OnInit {
     this.getSubjectQryServiceCall();
   }
   getSubjectQryServiceCall() {
-    this.apiService.getSubjectList("en").subscribe(res => {
+    this.apiService.getSubjectList().subscribe(res => {
       this.subjectList = res;
     }, error => {
 
@@ -38,7 +38,7 @@ export class ContactUsPage extends Base implements OnInit {
   }
   async sendMsg() {
     console.log(this.mapToObj())
-    this.apiService.sendMail(this.mapToObj(), "en").subscribe(
+    this.apiService.sendMail(this.mapToObj()).subscribe(
       res => {
         this.showToast("Thank you for submitting your enquiry,we will revert shortly");
         this.contactUsForm.reset();

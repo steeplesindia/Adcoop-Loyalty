@@ -15,9 +15,15 @@ export class AppComponent extends Base {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    injector:Injector
+    injector: Injector
   ) {
     super(injector);
+    this.storageService.language.then(res => {
+      let lang = res ? res : 'en';
+      this.translate.setDefaultLang(lang);
+      this.translate.use(lang);
+      this.apiService.setLanguageChange(lang);
+    })
     this.initializeApp();
     this.authService.canActivate();
   }

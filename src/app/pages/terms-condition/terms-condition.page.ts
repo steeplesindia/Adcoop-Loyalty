@@ -8,23 +8,26 @@ import { Base } from 'src/app/utils/base.class';
   styleUrls: ['./terms-condition.page.scss'],
 })
 export class TermsConditionPage extends Base implements OnInit {
-
-
-
+  termsLabel: any;
   constructor(injector: Injector) {
     super(injector);
 
   }
 
   getTermsServiceCall() {
-    this.apiService.getTermsConditionContext("en").subscribe(
+    this.storageService.termsNConditions.then(res => {
+      if (res) {
+        this.termsLabel = res;
+      }
+    })
+    this.apiService.getTermsConditionContext().subscribe(
       res => {
         res.forEach(element => {
-          if (element.Placeholder == '5')
+          if (element.Placeholder == '5') {
+            this.termsLabel = element.TextContent;
             this.storageService.setTermsNConditions(element.TextContent);
+          }
         });
-
-      }, error => {
       })
   }
 

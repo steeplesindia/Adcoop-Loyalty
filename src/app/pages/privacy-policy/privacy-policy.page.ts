@@ -14,18 +14,18 @@ export class PrivacyPolicyPage extends Base implements OnInit {
   }
 
 
-  async getPolicyLabelServiceCall() {
-    this.apiService.getPolicyContext("en").subscribe(res => {
+  getPolicyLabelServiceCall() {
+    this.storageService.privacyPolicy.then(res=>{
+      if(res)
+        this.policyLabel = res
+    })
+    this.apiService.getPolicyContext().subscribe(res => {
       res.forEach(element => {
         if (element.Placeholder == '6') {
           this.policyLabel = element.TextContent;
           this.storageService.setPrivacyPolicy(element.TextContent);
         }
       });
-
-    }, error => {
-      console.log(error);
-
     })
   }
   ngOnInit() {

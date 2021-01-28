@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { ToastController, AlertController, ActionSheetController } from '@ionic/angular';
 import { Observable, from, Subscription } from 'rxjs';
 import { promise } from 'protractor';
+import { TranslateService } from '@ngx-translate/core';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,33 +13,40 @@ export class AlertService {
   constructor(
     private alertController: AlertController, 
     private toastController: ToastController,
-    private actionSheet: ActionSheetController
+    private actionSheet: ActionSheetController,
+    private translate:TranslateService,
+    private apiServ:ApiService
     ) { }
 
   AlertConfirmation(headerTxt, msg): Observable<any> {
     var self = this;
     return from(
-      new Promise(async function (resolve, reject) {
-        const alert = await self.alertController.create({
-          header: headerTxt,
-          message: msg,
-          buttons: [
-            {
-              text: 'No',
-              role: 'cancel',
-              handler: (blah) => {
-                resolve(false);
-              }
-            },
-            {
-              text: 'Yes',
-              handler: () => {
-                resolve(true)
-              }
-            },
-          ]
+      new Promise(function (resolve, reject) {
+        self.translate.setDefaultLang(self.apiServ.language);
+        self.translate.get("no").subscribe(no=>{
+          self.translate.get("yes").subscribe(async (yes) =>{
+            const alert = await self.alertController.create({
+              header: headerTxt,
+              message: msg,
+              buttons: [
+                {
+                  text: no,
+                  role: 'cancel',
+                  handler: () => {
+                    resolve(false);
+                  }
+                },
+                {
+                  text: yes,
+                  handler: () => {
+                    resolve(true)
+                  }
+                },
+              ]
+            });
+            alert.present();
+          });
         });
-        alert.present();
       })
     )
   }
@@ -102,3 +111,4 @@ export class AlertService {
     return await toast.present();
   }
 }
+

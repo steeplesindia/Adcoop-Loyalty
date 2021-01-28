@@ -17,20 +17,30 @@ interface Promo {
 export class PromotionPage extends Base implements OnInit {
   promotionList: PromotionsModel[] = [];
   selectedPromotion: PromotionsModel = {} as PromotionsModel;
+  authenticated:boolean;
 
   constructor(injector: Injector) {
     super(injector);
+    this.authService.authChange$.subscribe(res => this.authenticated = res);
   }
   ngOnInit() {
     this.getPromos();
   }
   getPromos() {
-    this.apiService.getPromotions("").subscribe(
-      res => {
-        this.promotionList = res;
-        this.selectedPromotion = this.promotionList[0];
+    this.storageService.promotions.then(res=>{
+      if(res){
+        this.mapToObj(res);
+      }
+    })
+    this.apiService.getPromotions("").subscribe(res => {
+        this.storageService.setPromotions(res);
+        this.mapToObj(res)
         console.log(this.promotionList);
-      }, (error) => {
       })
   }  
+
+  mapToObj(promoList){
+    this.promotionList = promoList;
+    this.selectedPromotion = promoList[0];
+  }
 }

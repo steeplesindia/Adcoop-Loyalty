@@ -1,0 +1,32 @@
+<header-page [title]="'About Us'" [backbutton]="'true'"></header-page>
+<ion-content class="ion-padding">
+	<h4 class="desc" text-center> {{aboutUsLabel._about}} </h4>
+	<img class="aboutImg" src='./assets/images/aboutUs/AboutHayyak.png' />
+	<p class="headerTxt"> {{aboutUsLabel._headerContext}} </p>
+
+	<ion-card>
+		<img src="./assets/images/aboutUs/Benefits.png" padding />
+		<ion-card-content>
+			<ion-card-title class="desc" text-center> {{aboutUsLabel._benefits}} </ion-card-title>
+			<p class="desc"> {{aboutUsLabel._BshortDesc}} </p>
+			<p *ngIf="readMore.benefits.value" class="desc" [innerHTML]="aboutUsLabel._BlongDesc"> </p>
+			<ion-button expand="block" class="readMore" (click)="toggleDetails(readMore.benefits)">
+				<span *ngIf="!readMore.benefits.value ; else readLess">Read More</span>
+				<ng-template #readLess>Read Less</ng-template>
+			</ion-button>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card>
+		<img src="./assets/images/aboutUs/Earn&Redeem.png" />
+		<ion-card-content>
+			<ion-card-title class="desc" text-center> {{aboutUsLabel._earnPoints}} </ion-card-title>
+			<p class="desc"> {{aboutUsLabel._epShortDesc}} </p>
+			<p *ngIf="readMore.earnPoints.value" class="desc" [innerHTML]="aboutUsLabel._epLongDesc"> </p>
+			<ion-button expand="block" class="readMore" (click)="toggleDetails(readMore.earnPoints)">
+				<span *ngIf="!readMore.earnPoints.value ; else readLess">Read More</span>
+				<ng-template #readLess>Read Less</ng-template>
+			</ion-button>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

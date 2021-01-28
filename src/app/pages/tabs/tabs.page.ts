@@ -11,11 +11,16 @@ export class TabsPage extends Base implements OnInit {
 
   constructor(injector: Injector) {
     super(injector);
-    
+    this.storageService.language.then(res => {
+      console.log(res)
+      let lang = res ? res : 'en';
+      this.translate.setDefaultLang(lang);
+      this.translate.use(lang);
+      this.apiService.setLanguageChange(lang);
+    })
   }
   ngOnInit() {
     this.authService.authChange$.subscribe(res=>{
-      console.log(res)
       this.authenticated = res
     })
   }
@@ -27,6 +32,6 @@ export class TabsPage extends Base implements OnInit {
   gotoCard() {
     var fabBtn = document.querySelector(".fabBtn");
     fabBtn.classList.add("active");
-    this.navigate('/tabs/my-cards')
+    this.navigate('tab/tabs/my-cards')
   }
 }

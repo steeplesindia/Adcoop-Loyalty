@@ -1,0 +1,88 @@
+<div class="container-header">
+	<div class="left-content">
+		<p> {{title}} </p>
+	</div>
+	<div class="right-content">
+		<ion-icon name="close-outline" class="userImg" (click)="close(null)"></ion-icon>
+	</div>
+</div>
+<ion-content class="ion-padding">
+	<ng-container *ngIf="type=='forgotPass'">
+		<form id="forgotPassForm" novalidate [formGroup]="forgotPassForm" (ngSubmit)="forgetPassword()">
+			<ion-item>
+				<ion-label position="floating"> {{'email' | translate}} </ion-label>
+				<ion-input type="email" formControlName="email"></ion-input>
+			</ion-item>
+			<div *ngIf="( forgotPassForm.get('email').hasError('required') ) && forgotPassForm.get('email').touched">
+				<ion-text class="error-msg"
+					*ngIf="forgotPassForm.get('email').hasError('required') && forgotPassForm.get('email').touched">
+					{{'emailRequired' | translate}}
+				</ion-text>
+			</div>
+
+			<div *ngIf="( forgotPassForm.get('email').hasError('email') ) && forgotPassForm.get('email').touched">
+				<ion-text class="error-msg"
+					*ngIf="forgotPassForm.get('email').hasError('email') && forgotPassForm.get('email').touched">
+					{{'emailInvalid' | translate}}
+				</ion-text>
+			</div>
+
+
+			<ion-button type="submit" expand="block" [disabled]="forgotPassForm.invalid">Submit</ion-button>
+		</form>
+	</ng-container>
+
+	<ng-container *ngIf="type =='transactionFilter'">
+		<ion-item>
+			<ion-label position="stacked">{{'options' | translate}} </ion-label>
+			<ion-select interface="action-sheet" (ionChange)="dateOptionSelected($event)">
+				<ion-select-option *ngFor="let item of transactionfilterOptions" [value]="item.id">
+					{{item.name}}
+				</ion-select-option>
+			</ion-select>
+		</ion-item>
+
+		<h4>
+			<span>{{'or' | translate}}</span>
+		</h4>
+
+		<ion-item lines="none">
+			<ion-label position="floating"> {{'startDate' | translate}} </ion-label>
+			<ion-datetime [(ngModel)]="data.startDate" [max]="data.endDate" (ionChange)="dateChanged()"></ion-datetime>
+		</ion-item>
+
+		<ion-item lines="none">
+			<ion-label position="floating"> {{'endDate' | translate}}</ion-label>
+			<ion-datetime [(ngModel)]="data.endDate" [max]="today" [min]="data.startDate"  (ionChange)="dateChanged()"></ion-datetime>
+		</ion-item>
+	</ng-container>
+
+	<ng-container *ngIf="type =='storeFilter'">
+
+		<ion-item lines="none">
+			<ion-label position="floating"> {{ 'brand' | translate }} </ion-label>
+			<ion-select [(ngModel)]="data.brand" interface="action-sheet" >
+				<ion-select-option [value]="''"> {{'all' | translate}}  </ion-select-option>
+				<ion-select-option class="ion-text-wrap" *ngFor="let brands of brandList"
+					[value]="brands.BrandName">
+					{{brands.BrandName}}
+				</ion-select-option>
+			</ion-select>
+		</ion-item>
+
+		<ion-item lines="none">
+			<ion-label position="floating"> {{ 'city' | translate }} </ion-label>
+			<ion-select [(ngModel)]="data.city" interface="action-sheet">
+				<ion-select-option [value]="''">{{'all' | translate}}</ion-select-option>
+				<ion-select-option text-wrap *ngFor="let city of cityList" [value]="city.Emirates">
+					{{city.Emirates}}
+				</ion-select-option>
+			</ion-select>
+		</ion-item>
+
+
+		<ion-button expand="block" (click)="submitStoreFilter()">
+			{{'submit' | translate}}
+		</ion-button>
+	</ng-container>
+</ion-content>

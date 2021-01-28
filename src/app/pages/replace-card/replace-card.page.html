@@ -1,0 +1,35 @@
+<header-page [title]="'Replace Card'" [backbutton]="'true'"></header-page>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label> {{'selectReason' | translate}}</ion-label>
+    <ion-select [(ngModel)]="reason" interface="action-sheet">
+      <ion-select-option *ngFor="let item of reasonList" [value]="item"> {{item}} </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+
+  <ion-card style="height:70%; overflow: scroll;margin: 0;">
+    <ion-card-content>
+
+      <ion-item-group>
+        <ion-item-divider sticky="true">
+          <ion-searchbar mode="ios" [(ngModel)]="searchedItem"></ion-searchbar>
+        </ion-item-divider>
+        <ion-radio-group>
+          <ion-item *ngFor="let stores of storeList | filter:searchedItem" (click)="selectedStore(stores)">
+            <ion-label class="ion-text-wrap">{{stores.StoreName}}</ion-label>
+            <ion-radio mode="ios" slot="end" [value]="stores.StoreName"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+
+      </ion-item-group>
+
+   
+    </ion-card-content>
+  </ion-card>
+  <ion-button expand="block" (click)="submit()" [disabled]="showSpinner">
+    {{'submit' | translate}}
+    <ion-spinner name="dots" *ngIf="showSpinner"></ion-spinner>
+  </ion-button>
+</ion-content>

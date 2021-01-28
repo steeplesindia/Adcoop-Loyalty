@@ -1,15 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
+import { AboutUsPage } from '../about-us/about-us.page';
 import { ContactUsPage } from '../contact-us/contact-us.page';
 import { DashboardGuestPage } from '../dashboard-guest/dashboard-guest.page';
 import { DashboardUserPage } from '../dashboard-user/dashboard-user.page';
 import { FaqPage } from '../faq/faq.page';
 import { MyAccountPage } from '../my-account/my-account.page';
+import { MyCardsPage } from '../my-cards/my-cards.page';
 import { PrivacyPolicyPage } from '../privacy-policy/privacy-policy.page';
+import { ProfilePage } from '../profile/profile.page';
 import { PromotionPage } from '../promotion/promotion.page';
+import { ReplaceCardPage } from '../replace-card/replace-card.page';
 import { StorePage } from '../store/store.page';
 import { TermsConditionPage } from '../terms-condition/terms-condition.page';
+import { TransactionPage } from '../transaction/transaction.page';
 import { TabsPage } from './tabs.page';
 
 
@@ -20,33 +25,33 @@ const routes: Routes = [
     children: [
       {
         path: 'dashboard-user',
-        component:DashboardUserPage,
-        canActivate: [AuthGuardService]
+        component: DashboardUserPage,
+       
       },
       {
         path: 'dashboard-guest',
-        component:DashboardGuestPage
+        component: DashboardGuestPage
       },
       {
         path: 'promotion',
-        component:PromotionPage
+        component: PromotionPage
       },
       {
         path: 'store',
-        component:StorePage
+        component: StorePage
       },
       {
         path: 'my-cards',
-        children: [
-          {
-            path: '',
-            loadChildren: '../my-cards/my-cards.module#MyCardsPageModule'
-          }
-        ]
+        component: MyCardsPage,
+         canActivate: [AuthGuardService]
       },
-      { 
-        path: 'social-media', 
-        loadChildren: '../social-media/social-media.module#SocialMediaPageModule' 
+      {
+        path: 'transaction',
+        component: TransactionPage
+      },
+      {
+        path: 'social-media',
+        loadChildren: '../social-media/social-media.module#SocialMediaPageModule'
       },
       {
         path: 'weekly-offer',
@@ -68,48 +73,43 @@ const routes: Routes = [
       },
       {
         path: 'privacy',
-        component:PrivacyPolicyPage
+        component: PrivacyPolicyPage
       },
       {
         path: 'contact',
-        component:ContactUsPage
+        component: ContactUsPage
       },
       {
         path: 'terms',
-        component:TermsConditionPage
+        component: TermsConditionPage
       },
       {
         path: 'faq',
-        component:FaqPage
+        component: FaqPage
+      },
+      {
+        path: 'replace-card',
+        component: ReplaceCardPage
+      },
+      {
+        path: 'profile',
+        component: ProfilePage
+      },
+      {
+        path: 'about',
+        component: AboutUsPage
       },
       {
         path: 'my-account',
-        component:MyAccountPage,
+        component: MyAccountPage,
         children: [
-          {
-            path: 'replace-card',
-            loadChildren: '../replace-card/replace-card.module#ReplaceCardPageModule'
-          },
           {
             path: 'interest',
             loadChildren: '../interest/interest.module#InterestPageModule'
           },
           {
-            path: 'about',
-            loadChildren: '../about/about.module#AboutPageModule'
-          },
-          {
-            path: 'profile',
-            loadChildren: '../edit-profile/edit-profile.module#EditProfilePageModule'
-          },
-         
-          {
             path: 'transaction',
             loadChildren: '../transaction/transaction.module#TransactionPageModule'
-          },
-          {
-            path: 'corporate-purchase',
-            loadChildren: '../corporate-purchase/corporate-purchase.module#CorporatePurchasePageModule'
           },
         ]
       }
@@ -117,7 +117,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'tabs/dashboard-user',
+    redirectTo: 'tabs/my-cards',
     pathMatch: 'full'
   }
 ];

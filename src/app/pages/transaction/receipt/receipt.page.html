@@ -1,0 +1,28 @@
+<div class="container-header">
+  <div class="left-content">
+    <p> {{title}} </p>
+  </div>
+
+  <div class="right-content">
+    <ion-icon name="close-outline" class="userImg" (click)="close()"></ion-icon>
+  </div>
+</div>
+
+<ion-content>
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="8">Product</ion-col>
+        <ion-col size="2">Qty</ion-col>
+        <ion-col size="2">Amt</ion-col>
+      </ion-row>
+
+      <ion-row *ngFor="let item of transactionDetails">
+        <ion-col size="8"> {{item.itemName}} <b> ({{item.netAmount}})</b> </ion-col>
+        <ion-col size="2"> {{item.qty}} </ion-col>
+        <ion-col size="2"> {{item.totalAmount}} </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+</ion-content>

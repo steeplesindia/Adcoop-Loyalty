@@ -1,0 +1,175 @@
+<header-page [title]="'Register'" [backbutton]="'true'"></header-page>
+<ion-content class="ion-padding">
+
+
+	<form id="registerForm" novalidate [formGroup]="registerForm" (ngSubmit)="register()">
+
+		<ion-item>
+			<ion-input type="tel" placeholder="Enter Hayyak card number" formControlName="cardNo" [readonly]="showCard">
+			</ion-input>
+			<ion-button fill="clear" slots="end" (click)="barcodeScan()">
+				<ion-icon slot="icon-only" name="barcode"></ion-icon>
+			</ion-button>
+
+			<ion-button fill="clear" slots="end" [disabled]="registerForm.get('cardNo').invalid" (click)="validateCard()">
+				<ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
+			</ion-button>
+		</ion-item>
+
+		<ion-text class="error-msg" *ngIf="registerForm.get('cardNo').touched && registerForm.get('cardNo').invalid">
+			{{ getErrorMessage(registerForm.get('cardNo')) }}
+		</ion-text>
+
+		<ng-container *ngIf="showCard">
+
+			<ion-segment [(ngModel)]="segment" [ngModelOptions]="{standalone: true}">
+				<ion-segment-button value="personal">
+					<ion-label>Personal</ion-label>
+				</ion-segment-button>
+				<ion-segment-button value="address">
+					<ion-label>Address</ion-label>
+				</ion-segment-button>
+			</ion-segment>
+
+			<div [hidden]="segment =='address'">
+				<ion-item>
+					<ion-label position="stacked"> {{'firstName' | translate}} </ion-label>
+					<ion-input type="text" formControlName="firstName"></ion-input>
+				</ion-item>
+				<ion-text class="error-msg"
+					*ngIf="registerForm.get('firstName').touched && registerForm.get('firstName').invalid">
+					{{ getErrorMessage(registerForm.get('firstName')) }}
+				</ion-text>
+
+				<ion-item>
+					<ion-label position="stacked"> {{'lastName' | translate}}</ion-label>
+					<ion-input type="text" formControlName="lastName"></ion-input>
+				</ion-item>
+
+				<ion-text class="error-msg"
+					*ngIf="registerForm.get('lastName').touched && registerForm.get('lastName').invalid">
+					{{ getErrorMessage(registerForm.get('lastName')) }}
+				</ion-text>
+
+				<ion-item>
+					<ion-label position="stacked"> {{'gender' | translate}} </ion-label>
+					<ion-select formControlName="gender" interface="action-sheet">
+						<ion-select-option value="0"> {{'female' | translate}} </ion-select-option>
+						<ion-select-option value="1"> {{'male' | translate}} </ion-select-option>
+					</ion-select>
+				</ion-item>
+
+				<ion-text class="error-msg" *ngIf="registerForm.get('gender').touched && registerForm.get('gender').invalid">
+					{{ getErrorMessage(registerForm.get('gender')) }}
+				</ion-text>
+
+				<ion-item>
+					<ion-label position="stacked">{{'nationality' | translate}}</ion-label>
+					<ion-select formControlName="nationality" interface="action-sheet">
+						<ion-select-option *ngFor="let country of nationalityList" [value]="country.Id">
+							{{country.NationalityName}}
+						</ion-select-option>
+					</ion-select>
+				</ion-item>
+
+				<ion-text class="error-msg"
+					*ngIf="registerForm.get('nationality').touched && registerForm.get('nationality').invalid">
+					{{ getErrorMessage(registerForm.get('nationality')) }}
+				</ion-text>
+
+				<ion-item>
+					<ion-label position="stacked"> {{'dob' | translate}}</ion-label>
+					<ion-datetime displayFormat="MMM DD, YYYY" formControlName="dob"></ion-datetime>
+				</ion-item>
+
+				<ion-text class="error-msg" *ngIf="registerForm.get('dob').touched && registerForm.get('dob').invalid">
+					{{ getErrorMessage(registerForm.get('dob')) }}
+				</ion-text>
+
+				<ion-item>
+					<ion-label position="stacked">{{'mobilePrefix' | translate}}</ion-label>
+					<ion-select formControlName="prefix" interface="action-sheet">
+						<ion-select-option *ngFor="let pre of prefixList" [value]="pre.PrefixCode">
+							{{pre.PrefixCode}}
+						</ion-select-option>
+					</ion-select>
+				</ion-item>
+
+				<ion-text class="error-msg" *ngIf="registerForm.get('prefix').touched && registerForm.get('prefix').invalid">
+					{{ getErrorMessage(registerForm.get('prefix')) }}
+				</ion-text>
+
+				<ion-item>
+					<ion-label position="stacked">{{'mobileNo' | translate}} </ion-label>
+					<ion-input type="tel" formControlName="mobileNo"></ion-input>
+				</ion-item>
+
+				<ion-text class="error-msg"
+					*ngIf="registerForm.get('mobileNo').touched && registerForm.get('mobileNo').invalid">
+					{{ getErrorMessage(registerForm.get('mobileNo')) }}
+				</ion-text>
+
+				<ion-item>
+					<ion-label position="stacked"> {{'email' | translate}} </ion-label>
+					<ion-input type="email" formControlName="email"></ion-input>
+				</ion-item>
+
+				<ion-text class="error-msg" *ngIf="registerForm.get('email').touched && registerForm.get('email').invalid">
+					{{ getErrorMessage(registerForm.get('email')) }}
+				</ion-text>
+			</div>
+
+			<div [hidden]="segment =='personal'">
+				<ion-item>
+					<ion-label> {{'uaeResident' | translate}} </ion-label>
+					<ion-toggle ion-toggle-text="UAE Resident;Tourist" formControlName="uaeResident">
+					</ion-toggle>
+				</ion-item>
+
+				<ion-text class="error-msg"
+					*ngIf="registerForm.get('uaeResident').touched && registerForm.get('uaeResident').invalid">
+					{{ getErrorMessage(registerForm.get('uaeResident')) }}
+				</ion-text>
+
+				<ion-item>
+					<ion-label position="stacked"> {{'city' | translate}} </ion-label>
+					<ion-input type="text" formControlName="city"></ion-input>
+				</ion-item>
+
+				<ion-text class="error-msg" *ngIf="registerForm.get('city').touched && registerForm.get('city').invalid">
+					{{ getErrorMessage(registerForm.get('city')) }}
+				</ion-text>
+
+				<ion-item>
+					<ion-label position="stacked">{{'area' | translate}} </ion-label>
+					<ion-input type="text" formControlName="area"></ion-input>
+				</ion-item>
+
+				<ion-text class="error-msg" *ngIf="registerForm.get('area').touched && registerForm.get('area').invalid">
+					{{ getErrorMessage(registerForm.get('area')) }}
+				</ion-text>
+
+				<ion-item>
+					<ion-label position="stacked"> {{'streetNo' | translate}} </ion-label>
+					<ion-input type="text" formControlName="street"></ion-input>
+				</ion-item>
+
+				<ion-text class="error-msg" *ngIf="registerForm.get('street').touched && registerForm.get('street').invalid">
+					{{ getErrorMessage(registerForm.get('street')) }}
+				</ion-text>
+
+				<ion-item>
+					<ion-label position="stacked"> {{'houseNo' | translate}} </ion-label>
+					<ion-input type="text" formControlName="house"></ion-input>
+				</ion-item>
+				
+				<ion-text class="error-msg" *ngIf="registerForm.get('house').touched && registerForm.get('house').invalid">
+					{{ getErrorMessage(registerForm.get('house')) }}
+				</ion-text>
+
+				<ion-button expand="full" type="submit" [disabled]="registerForm.invalid">Register</ion-button>
+			</div>
+		</ng-container>
+	</form>
+
+</ion-content>
